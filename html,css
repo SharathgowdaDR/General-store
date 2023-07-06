@@ -30,12 +30,9 @@
    </div>
   </div>
 <script>
-    var header = document.getElementById('main-header')
-    headerTitle.style.border = 'solid 3px #000';
-    var main = document.getElementsByClassName('ltitle')
-    main.style.fontweight = 'bold';
-    main.style.fontcolor = 'green'
-
+    var items = document.getElementsByClass('list-group-item')
+   items[2].background-color = 'green';
+   items.textweight = bold;
 </script>
 </body>
 </html>
