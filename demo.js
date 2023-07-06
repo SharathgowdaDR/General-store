@@ -1,1 +1,1 @@
-console.log("First git project")
+console.log("First github project")
