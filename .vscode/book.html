@@ -4,6 +4,34 @@
   <title>Book an Appointment</title>
  <link rel="stylesheet" href="book.css">
 </head>
+<style>
+    h2 {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+  form {
+    margin-bottom: 20px;
+  }
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  input[type="text"],
+  input[type="email"] {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+  input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+  }
+</style>
 <body>
   <div class="container">
     <h2>Book an Appointment</h2>
@@ -29,6 +57,24 @@
       </div>
     </form>
   </div>
-<script src="book.js"></script>
+<script >
+    document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+      e.preventDefault(); 
+      var name = document.getElementById('name').value;
+      var email = document.getElementById('email').value;
+      var date = document.getElementById('date').value;
+      var time = document.getElementById('time').value;
+      var appointment = {
+        name: name,
+        email: email,
+        date: date,
+        time: time
+      };
+        localStorage.setItem('appointments');
+        let myObj_deserialised = Json.parse(localStorage.getItem("myObj"));
+        console.log(myObj_deserialized);
+        document.getElementById('appointmentForm').reset();
+    });
+</script>
 </body>
 </html>
