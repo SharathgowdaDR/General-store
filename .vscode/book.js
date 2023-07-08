@@ -10,8 +10,9 @@
         date: date,
         time: time
       };
-        localStorage.setItem('appointments', JSON.stringify(appointments));
-        showMessage('Appointment booked successfully!', 'success');
+        localStorage.setItem('appointments');
+        let myObj_deserialised = Json.parse(localStorage.getItem("myObj"));
+        console.log(myObj_deserialized);
         document.getElementById('appointmentForm').reset();
     });
     
