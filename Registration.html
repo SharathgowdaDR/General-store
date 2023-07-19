@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Registration form</title>
+  <style>
+     body {
+      background-image: url('https://static.supersaas.net/blog/img/booknow/book_now_header.png');
+      background-size: cover;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+        background-image: url('https://thumbs.dreamstime.com/b/address-phone-book-icon-flat-style-telephone-notebook-vector-illustration-white-isolated-background-hotline-contact-address-169747581.jpg');
+      background-size:cover;
+      width: 500px;
+      margin: auto;
+      padding: 30px;
+      background-color:gray; 
+    }
+    .container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .container label {
+      margin-bottom: 10px;
+    }
+    .container input[type="text"],
+    .container input[type="email"],
+    .container input[type="phone number"]
+     {
+      width: 100%;
+      padding: 10px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      background-color: green;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Book a Call</h2>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="phone number">Phone number:</label>
+      <input type="phone number" id="phone number" name="phone number" required>
+
+      <button>Get a call</button>
+  </div>
+
+  <script>
+      console.log('Name:', name);
+      console.log('Email:', email);
+      console.log('Phone number:',);
+  </script>
+</body>
+</html>
