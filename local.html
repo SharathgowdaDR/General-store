@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Registration form</title>
+  <style>
+    body {
+        background-image: url('https://static.supersaas.net/blog/img/booknow/book_now_header.png');
+      font-family: Arial, sans-serif;
+    }
+    .container {
+        background-image: url('https://thumbs.dreamstime.com/b/address-phone-book-icon-flat-style-telephone-notebook-vector-illustration-white-isolated-background-hotline-contact-address-169747581.jpg');
+      width: 500px;
+      margin: auto;
+      padding: 30px;
+    }
+    .container h2 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .container label {
+      margin-bottom: 10px;
+      display: block;
+    }
+    .container input[type="text"],
+    .container input[type="email"],
+    .container input[type="tel"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: green;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Registration Form</h2>
+    <form id="registrationForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="phone">Phone number:</label>
+      <input type="tel" id="phone" name="phone" required>
+
+      <button type="submit">GET A CALL</button>
+    </form>
+  </div>
+
+  <script>
+       function storeUserDetails() {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+
+      
+      const existingUsersJson = localStorage.getItem('userDetails');
+      let existingUsers = [];
+
+      if (existingUsersJson) {
+        existingUsers = JSON.parse(existingUsersJson);
+      }
+
+      
+      const newUser = {
+        name: name,
+        email: email,
+        phone: phone,
+      };
+
+      existingUsers.push(newUser);
+
+     
+      localStorage.setItem('userDetails', JSON.stringify(existingUsers));
+
+    }
+  </script>
+</body>
+</html>

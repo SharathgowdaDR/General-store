@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Placement Form</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+h1 {
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-top: 10px;
+}
+
+input,
+textarea {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Placement Form</h1>
+    <form id="placementForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="phone">Phone:</label>
+      <input type="tel" id="phone" name="phone" required>
+
+      <label for="university">University:</label>
+      <input type="text" id="university" name="university" required>
+
+      <label for="major">Major:</label>
+      <input type="text" id="major" name="major" required>
+
+      <label for="expectedGraduation">Expected Graduation:</label>
+      <input type="date" id="expectedGraduation" name="expectedGraduation" required>
+
+      <label for="skills">Skills:</label>
+      <textarea id="skills" name="skills" required></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  <script>
+    const placementForm = document.getElementById("placementForm");
+
+placementForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const phone = document.getElementById("phone").value;
+  const university = document.getElementById("university").value;
+  const major = document.getElementById("major").value;
+  const expectedGraduation = document.getElementById("expectedGraduation").value;
+  const skills = document.getElementById("skills").value;
+
+  const formData = {
+    name: name,
+    email: email,
+    phone: phone,
+    university: university,
+    major: major,
+    expectedGraduation: expectedGraduation,
+    skills: skills,
+  };
+
+  localStorage.setItem("placementFormData", JSON.stringify(formData));
+
+  
+  placementForm.reset();
+
+  
+  console.log(formData);
+});
+
+
+  </script>
+</body>
+</html>

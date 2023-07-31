@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expense Tracker App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    .container {
+      margin-top: 30px;
+    }
+
+    form {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    input {
+      margin-right: 5px;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Expense Tracker App</h1>
+  <div class="container">
+    <form id="expenseForm">
+      <label>Expense Description:</label>
+      <input type="text" id="expenseDesc"  required>
+      <label>Expense Amount:</label>
+      <input type="number" id="expenseAmount" required>
+      <button type="submit">Add Expense</button>
+    </form>
+    <div id="expenseList"></div>
+  </div>
+
+  <script>
+    const expenseForm = document.getElementById('expenseForm');
+    const expenseDescInput = document.getElementById('expenseDesc');
+    const expenseAmountInput = document.getElementById('expenseAmount');
+    const expenseList = document.getElementById('expenseList');
+    const cancelEditButton = document.getElementById('cancelEdit');
+
+    let expenses = [];
+    let editedExpenseIndex = null;
+
+    function saveToLocalStorage() {
+      localStorage.setItem('expenses', JSON.stringify(expenses));
+    }
+
+    function getFromLocalStorage() {
+      const storedExpenses = localStorage.getItem('expenses');
+      if (storedExpenses) {
+        expenses = JSON.parse(storedExpenses);
+      }
+    }
+
+    function renderExpenses() {
+      expenseList.innerHTML = '';
+      expenses.forEach((expense, index) => {
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `
+          ${expense.description} - ${expense.amount}
+          <button class="edit" onclick="editExpense(${index})">Edit</button>
+          <button class="delete" onclick="deleteExpense(${index})">Delete</button>
+        `;
+        expenseList.appendChild(listItem);
+      });
+      saveToLocalStorage();
+    }
+
+    function addExpense(description, amount) {
+      const expense = { description, amount };
+      expenses.push(expense);
+      renderExpenses();
+    }
+
+    function editExpense(index) {
+      const expense = expenses[index];
+      expenseDescInput.value = expense.description;
+      expenseAmountInput.value = expense.amount;
+      editedExpenseIndex = index;
+    }
+
+    function cancelEdit() {
+      expenseDescInput.value = '';
+      expenseAmountInput.value = '';
+      editedExpenseIndex = null;
+    }
+
+    function updateExpense() {
+      if (editedExpenseIndex !== null) {
+        const description = expenseDescInput.value;
+        const amount = parseFloat(expenseAmountInput.value);
+
+        if (validateInput(description, amount)) {
+          expenses[editedExpenseIndex].description = description;
+          expenses[editedExpenseIndex].amount = amount;
+          cancelEdit();
+          renderExpenses();
+        }
+      }
+    }
+
+    function deleteExpense(index) {
+      expenses.splice(index, 1);
+      renderExpenses();
+    }
+
+    function validateInput(description, amount) {
+      if (description.trim() === '' || isNaN(amount)) {
+        return false;
+      }
+      return true;
+    }
+
+    expenseForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      if (editedExpenseIndex !== null) {
+        updateExpense();
+      } else {
+        const description = expenseDescInput.value;
+        const amount = parseFloat(expenseAmountInput.value);
+
+        if (validateInput(description, amount)) {
+          addExpense(description, amount);
+          expenseDescInput.value = '';
+          expenseAmountInput.value = '';
+        }
+      }
+    });
+    getFromLocalStorage();
+    renderExpenses();
+  </script>
+</body>
+</html>
