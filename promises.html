@@ -39,10 +39,10 @@ function printPostsAndActivityTime() {
 
 async function createPostAndUpdateActivity(post) {
     try {
-        await createPost(post);
-        await updateLastUserActivityTime();
+        await Promise.all([createPost(post), updateLastUserActivityTime()]);
         printPostsAndActivityTime();
-        await deleteLastPost();
+        const deletedPost = await deleteLastPost();
+        console.log("Deleted Post:", deletedPost);
         console.log("New Posts after deletion:", posts);
     } catch (error) {
         console.log(error);
