@@ -1,0 +1,50 @@
+const posts = [];
+let lastUserActivityTime = null;
+
+function createPost(post) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            posts.push(post);
+            resolve();
+        }, 1000);
+    });
+}
+
+function updateLastUserActivityTime() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            lastUserActivityTime = new Date().toLocaleTimeString();
+            resolve();
+        }, 1000);
+    });
+}
+
+function deleteLastPost() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (posts.length > 0) {
+                const deletedPost = posts.pop();
+                resolve(deletedPost);
+            } else {
+                reject("ERROR: No posts present");
+            }
+        }, 1000);
+    });
+}
+
+function printPostsAndActivityTime() {
+    console.log("Posts:", posts);
+    console.log("Last User Activity Time:", lastUserActivityTime);
+}
+
+async function createPostAndUpdateActivity(post) {
+    try {
+        await createPost(post);
+        await updateLastUserActivityTime();
+        printPostsAndActivityTime();
+        await deleteLastPost();
+        console.log("New Posts after deletion:", posts);
+    } catch (error) {
+        console.log(error);
+    }
+}
