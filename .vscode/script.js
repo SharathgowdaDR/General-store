@@ -92,16 +92,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   
     function deleteAppointment(index) {
-    
-      let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
-  
-     
-      appointments.splice(index, 1);
-  
-     
-      localStorage.setItem("appointments", JSON.stringify(appointments));
-  
-      displayAppointments();
+        axios.delet("https://crudcrud.com/api/9b463036deeb4a1dba310f97397e5ec9/appointmentdata",obj)
+      .then((response)=>{
+        appointments.splice(index, 1);
+        console.log(response)
+      })
+      .catch((err)=>{
+        console.log(err)
+      })
     }
 })
-   
