@@ -101,4 +101,11 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(err)
       })
     }
+    axios.put("https://crudcrud.com/api/9b463036deeb4a1dba310f97397e5ec9/appointmentdata",obj)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 })
